@@ -1,6 +1,6 @@
 # CKAD-exercises
 
-Let's practice [CKAD](https://www.cncf.io/training/certification/ckad/) questions.
+Let's practice [CKAD](https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/) questions.
 
 ## setup
 source setup.sh
