@@ -36,7 +36,7 @@ TODO
 ## Job termination and cleanup
 TODO
 
-## Clean up finished jobs automatically
+## Clean up finished jobs automaticeally
 TODO
 
 ## Alternatives
