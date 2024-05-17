@@ -1,7 +1,6 @@
 ---
 docs: https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
 ---
-
 # CronJob
 
 _CronJob_ 은 Job 을 반복적인 schedule 로 실행 합니다.
