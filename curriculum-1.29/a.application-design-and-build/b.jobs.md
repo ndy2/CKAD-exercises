@@ -66,16 +66,15 @@ spec:
 
 Indexed Job 을 생성하는 경우, Job 이 `성공` 했다고 결정도리 수 있는 조건을 `.spec.successPolicy` 에 설정할 수 있습니다. 기본적으로 Job 은 성공한 파드의 개수가 `.spec.completions` 에 설정된 값과 같은 경우 `성공` 했다고 여겨집니다.
 
-
 ## Job termination and cleanup
 
 Job 이 완료되면, 새로운 파드가 생성되지 않습니다. Pods 는 제거되지 않습니다.
 TODO
+
 ## Clean up finished jobs automaticeally
 TODO
 
 ## Alternatives
-TODO
 
 1. Bare Pods
 2. Replication Controller

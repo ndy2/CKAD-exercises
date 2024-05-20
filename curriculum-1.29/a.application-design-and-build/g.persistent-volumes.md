@@ -39,3 +39,47 @@ Cliam 은 매칭되는 volume 이 없다면 계속 unbound 한 상태를 유지�
 
 Pod 의 `volume` 블락에 `persistentVolumeClaim` 을 활용하여 claim 을 이용할 수 있습니다.
 
+### Storage Object in Use Protection
+
+저장소 객체의 `in Use Protection` 기능을 통해 사용중인 PVC 와 PV 의 삭제를 막을 수 있습니다. PVC 와 PV 의 임의 삭제는 데이터 손실로 이어 질 수 있기 때문에 위험합니다.
+
+사용자가 Pod 가 사용중인 PVC 를 제거하려 하면, PVC 는 바로 제거 되지 않고 PVC 가 어느 Pod 에도 사용되지 않을 때 까지 제거가 지연됩니다. 마찬가지로 PVC 가 이용중인 PV 를 제거 하려 한다면 PV 의 제거도 지연됩니다.
+
+`kubectl describe pv/pvc my-pv/pvc` 결과 (사용 중일때 강제 제거 한 경우)
+
+```shell
+Finalizers:      [kubernetes.io/pv-protection]
+Status:          Terminating
+```
+
+## Persistent Volumes & PersistentVolumeClaims
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv0003
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: slow
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /tmp
+    server: 172.17.0.2
+```
+
+ **Capacity** - 용량
+ **Volume Mode** - Filesystem(default)/Block
+ **Access Mode** - 접근 모드 - ReadWriteOnce/ReadOnlyMany/ReadWriteMany/ReadWriteOncePod
+
+**Class**
+- `storageClassName` 으로 결정되는 Class 를 가질 수 있다.
+- 설정하지 않으면 PVC 에도 class 를 설정하지 않은 경우에만 bound 될 수 있다.
+
