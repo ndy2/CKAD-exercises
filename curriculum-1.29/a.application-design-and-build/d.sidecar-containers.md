@@ -1,11 +1,12 @@
 ---
 docs: https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/
 ---
+
 # Sidecar Containers
 
-> [!NOTE] FEATURE STATE: Kubernetes
+Sidecar Containers 란 메인 애플리케이션과 동일한 파드에서 실행되는 보조 컨테이너이다. 이는 보통 메인 _app container_ 의 기능을 향상 시키거나 확장하기 위해 사용된다. 일반적인 확용 방법은 추가적인 서비스 혹은 로깅, 모니터링, 보안과 같은 부가적인 기능을 제공하는 것이다.
 
-TODO - mergeme
+일반적으로, 파드당 하나의 app 컨테이너를 가진다. 만약, 로컬 웹 서버가 필요한 웹 애플리케이션을 실행하고자 한다면, 로컬 웹 서버는 sidecar 이고 웹 애플리케이션이 app 컨테이너 이다.
 
 ## Sidecar containers in Kubernetes
 
