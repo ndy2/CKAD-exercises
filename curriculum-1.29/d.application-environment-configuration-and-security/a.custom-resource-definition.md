@@ -1,5 +1,5 @@
 ---
-https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
+docs: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
 ---
 # Custom Resources
 
