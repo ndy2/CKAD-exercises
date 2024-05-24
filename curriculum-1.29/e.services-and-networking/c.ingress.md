@@ -38,3 +38,5 @@ graph LR;
     class client plain;
     class cluster cluster;
 ```
+
+Ingress 는 Services 에게 외부에서 접근 가능한 URLs 를 주기 위해, traffic 을 load balance 하기 위해, SSL/TLS 연결을 종료하기 위해, name-based virtual hosting 을 하기 위해 사용될 수 있습니다. Ingress controller 는 Ingress 를 
