@@ -39,4 +39,14 @@ graph LR;
     class cluster cluster;
 ```
 
-Ingress 는 Services 에게 외부에서 접근 가능한 URLs 를 주기 위해, traffic 을 load balance 하기 위해, SSL/TLS 연결을 종료하기 위해, name-based virtual hosting 을 하기 위해 사용될 수 있습니다. Ingress controller 는 Ingress 를 
+Ingress 는 Services 에게 외부에서 접근 가능한 URLs 를 주기 위해, traffic 을 load balance 하기 위해, SSL/TLS 연결을 종료하기 위해, name-based virtual hosting 을 하기 위해 사용될 수 있습니다. 
+
+Ingress 는 임의의 포트/프로토콜을 expose 하지 않습니다. 외부에 HTTP/HTTPS 이상의 서비스를 노출할 때는 보통 `Service.Type=NodePort` 혹은 `Service.Type=LoadBalancer` 를 이용합니다.
+
+## Prerequisites
+
+Ingress 를 만족하는 `Ingress Controller` 가 꼭 있어야 합니다. Ingress 만 생성하는 것은 아무런 효과가 없습니다.
+
+`ingress-nginx` 와 같은 Ingress controller 를 배포해야 할 수 있습니다. [`Ingress controllers`](0.ingress-controller.md) 를 참고하세요.
+
+이상적으로는, 모든 Ingress controller 가 ss
