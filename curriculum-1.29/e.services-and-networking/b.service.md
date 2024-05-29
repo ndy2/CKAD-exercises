@@ -40,3 +40,42 @@ cloud native 하지 않은 애플리케이션 에는, kubernetes 는 application
 ## Definding a Service
 
 TODO
+
+### Port Definitions
+
+TODO
+## Service type
+
+TODO
+
+**ClusterIp**
+
+**NodePort**
+
+**LoadBalancer**
+
+**ExternalName**
+
+### **ClusterIp**
+
+TODO
+### **NodePort**
+
+TODO
+### **LoadBalancer**
+
+TODO
+### **ExternalName**
+
+TODO
+## Headless Services
+
+TODO
+## Discovering services
+
+### Environment variables
+
+TODO
+### DNS
+
+TODO
