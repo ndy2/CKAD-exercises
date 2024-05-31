@@ -39,35 +39,82 @@ cloud native 하지 않은 애플리케이션 에는, kubernetes 는 application
 
 ## Definding a Service
 
-TODO
+Service 는 `객체` 입니다. Service definition 을 Kubernetes API 를 이용해 생성, 조회 혹은 수정 할 수 있습니다. `kubectl` 과 같은 tool 을 통해 API call 을 할 수 있습니다.
+
+예를 들어, TCP port 8080 을 listen 하고 있으며 `app.kubernetes.io/name=MyApp` 이라고 labelled 된 Pods 집합이 있다면, 아래의 Service 를 통해 TCP listener 를 정의할 수 있습니다.
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app.kubernetes.io/name: MyApp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+```
+
+위 manifest 를 적용하여 `ClusterIP` 타입의 `my-service` 서비스를 생성할 수 있습니다. 서비스는 `app.kubernetes.io/name: MyApp` 레이블을 가진 모든 파드를 target 합니다.
+
+Kubernetes 는 이 서비스에게 `cluster IP` 라고 불리는 IP 를 부여합니다. 이는 virtual IP address mechanism 에 사용 됩니다.
 
 ### Port Definitions
 
-TODO
-## Service type
+Pods 의 Port 정의는 이름을 가집니다, 그리고 이는 Service 의 `targetPort` 에서 참조될 수 있습니다. 예를 들어, `targetPort` 를 아래와 같이 연결할 수 있습니다.
 
-TODO
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app.kubernetes.io/name: proxy
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+    ports:
+      - containerPort: 80
+        name: http-web-svc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app.kubernetes.io/name: proxy
+  ports:
+  - name: name-of-service-port
+    protocol: TCP
+    port: 80
+    targetPort: http-web-svc
+```
+
+이러한 방식은 동일한 Port 이름을 가지는 여러 Pods 와 Service 에도 유효합니다.
+
+## Service type
 
 **ClusterIp**
 
+Service 를 `cluster-internal` 에 노출합니다. Service 는 오직 Cluster 내부에서만 접근 할 수 있습니다. Service 에 type 을 명시하지 않으면 사용되는 기본 값입니다. 이러한 Service 도 Ingress, Gateway 를 이용해 외부에 노출 할 수 있습니다.
+
 **NodePort**
+
+Service 를 각 노드의 IP 에 정적인 port 로 노출합니다. Node port 를 이용하려면, Kubernetes 는 `type: ClusterIP` 를 사용했을때와 마찬가지로 cluster IP 주소를 준비합니다.
 
 **LoadBalancer**
 
+Service 를 외부 load balancer 에 노출합니다. Kubernetes 는 직접 로드 밸런싱 요소를 제공하지 않으며; 직접 제공해야합니다. 혹은 cloud provider 과의 통합을 할 수도 있습니다.
+
 **ExternalName**
 
-### **ClusterIp**
+`externalName` 필드에 서비스를 매핑합니다.
 
-TODO
-### **NodePort**
-
-TODO
-### **LoadBalancer**
-
-TODO
-### **ExternalName**
-
-TODO
 ## Headless Services
 
 TODO

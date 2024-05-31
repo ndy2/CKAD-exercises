@@ -11,7 +11,7 @@ Secret 은 ConfigMaps 와 유사하지만 confidential 데이터를 저장하는
 
 ## Uses for Secrets
 
-Secret 을아래와 같은 목적으로 사용할 수 있습니다.
+Secret 을 아래와 같은 목적으로 사용할 수 있습니다.
 
 - Container 의 환경변수 설정
 - SSH keys 혹은 password 같은 credential 을 파드에 저장
