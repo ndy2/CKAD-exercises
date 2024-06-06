@@ -68,8 +68,7 @@ Indexed Job 을 생성하는 경우, Job 이 `성공` 했다고 결정도리 수
 
 ## Job termination and cleanup
 
-Job 이 완료되면, 새로운 파드가 생성되지 않습니다. Pods 는 제거되지 않습니다.
-TODO
+Job 이 완료되면, 새로운 파드가 생성되지 않습니다. Pods 는 제거되지 않습니다. Pod 를 남겨 둠으로써, 완료된 파드의 로그를 확인할 수 있습니다. job 객체는 pod 와 마찬가지로 완료 뒤에도 제거되지 않습니다. 마찬가지로 종료된 job 의 상태를 확인 할 수 있습니다. 상태를 확인 한 뒤 job 을 제거하는 것은 사용자의 선택입니다. Job 을 제거하면 생성된 pod 도 자동으로 제거 됩니다.
 
 ## Clean up finished jobs automaticeally
 TODO
